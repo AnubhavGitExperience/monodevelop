@@ -55,6 +55,13 @@ namespace Microsoft.VisualStudio.Platform
                 lastHandler: lastHandler);
         }
 
+        public void ExecuteTab (Action executeNextCommandTarget)
+        {
+            CurrentHandlers.Execute (_languageBuffer.ContentType,
+                args: new TabKeyCommandArgs (_textView, _languageBuffer),
+                lastHandler: executeNextCommandTarget);
+        }
+
         public void ExecuteBackspace(Action executeNextCommandTarget)
         {
             CurrentHandlers.Execute (_languageBuffer.ContentType,
@@ -73,6 +80,20 @@ namespace Microsoft.VisualStudio.Platform
         {
             CurrentHandlers.Execute (_languageBuffer.ContentType,
                 args: new ReturnKeyCommandArgs (_textView, _languageBuffer),
+                lastHandler: executeNextCommandTarget);
+        }
+
+        public void ExecuteUp (Action executeNextCommandTarget)
+        {
+            CurrentHandlers.Execute (_languageBuffer.ContentType,
+                args: new UpKeyCommandArgs (_textView, _languageBuffer),
+                lastHandler: executeNextCommandTarget);
+        }
+
+        public void ExecuteDown (Action executeNextCommandTarget)
+        {
+            CurrentHandlers.Execute (_languageBuffer.ContentType,
+                args: new DownKeyCommandArgs (_textView, _languageBuffer),
                 lastHandler: executeNextCommandTarget);
         }
 

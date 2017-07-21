@@ -9,11 +9,16 @@
     <Import_RootNamespace>Mono.TextEditor.Platform</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)MyCSharpCompletionData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyCSharpCompletionDataProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MyRoslynCompletionData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformCatalog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RoslynCommandTarget.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IMyRoslynCompletionDataProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RoslynCompletionPresenter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RoslynCompletionPresenterSession.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TaggedTextUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WaitIndicator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\Imaging\Impl\ImageMoniker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Platform\Text\Def\TextUIMd\Editor\ITagBasedSyntaxHighlightingFactory.cs" />
@@ -21,7 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)\Platform\Text\Def\Internal\TextData\ITextBufferFactoryService2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Platform\Text\Def\Internal\TextData\IThreadHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Platform\Text\Def\Internal\TextLogic\TagAggregatorOptions2.cs" />
-   </ItemGroup>
+  </ItemGroup>
   <ItemGroup>
   </ItemGroup>
 </Project>
