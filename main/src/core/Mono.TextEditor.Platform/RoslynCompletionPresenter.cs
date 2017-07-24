@@ -9,6 +9,7 @@ using System.ComponentModel.Composition;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Completion;
 using Microsoft.CodeAnalysis.Editor;
+using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -39,10 +40,10 @@ namespace MonoDevelop.Ide.CodeCompletion
                     if (string.Compare (subjectBuffer.ContentType.TypeName, contentTypeName, StringComparison.OrdinalIgnoreCase) == 0) {
                         string languageName;
                         if (TryGetLanguageNameFromContentType (subjectBuffer.ContentType, out languageName)) {
-                            var editor = IdeApp.Workbench.ActiveDocument.Editor;
-                            CompletionService completionService = editor.DocumentContext.RoslynWorkspace.Services.GetLanguageServices (languageName).GetService<CompletionService> ();
-
-                            return new RoslynCompletionPresenterSession (textView, subjectBuffer, completionDataProviderHandle.Value, completionService);
+                            if (Workspace.TryGetWorkspace (subjectBuffer.AsTextContainer (), out var workspace)) {
+                                CompletionService completionService = workspace.Services.GetLanguageServices (languageName).GetService<CompletionService> ();
+                                return new RoslynCompletionPresenterSession (textView, subjectBuffer, completionDataProviderHandle.Value, completionService);
+                            }
                         }
                     }
                 }
