@@ -217,9 +217,12 @@ namespace MonoDevelop.Ide.Gui
 		FilePath adHocFile;
 		Project adhocProject;
 		Solution adhocSolution;
+		public SolutionItem Owner {
+			get;
+		}	
 
 		public override Project Project {
-			get { return (Window != null ? Window.ViewContent.Project : null) ?? adhocProject; }
+			get { return (Window != null ? Owner as Project : null) ?? adhocProject; }
 /*			set { 
 				Window.ViewContent.Project = value; 
 				if (value != null)
